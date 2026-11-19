@@ -1,0 +1,29 @@
+# Construye el instalador .exe de ORI para Windows automáticamente en GitHub.
+# GitHub → Actions → "Instalador Windows de ORI" → descargue el .exe en "Artifacts".
+name: Instalador Windows de ORI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["escritorio/**", ".github/workflows/exe-windows.yml"]
+
+jobs:
+  exe:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: escritorio
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar dependencias
+        run: npm install
+      - name: Crear instalador
+        run: npx electron-builder --win --publish never
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ORI-Orion-Nova-Windows
+          path: escritorio/dist/*.exe
