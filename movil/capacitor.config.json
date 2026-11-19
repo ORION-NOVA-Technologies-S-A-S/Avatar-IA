@@ -1,0 +1,12 @@
+{
+  "appId": "com.orionnova.ori",
+  "appName": "ORI Orion Nova",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "http",
+    "cleartext": true
+  },
+  "android": {
+    "backgroundColor": "#050816"
+  }
+}

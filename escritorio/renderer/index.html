@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'sha256-AcaNiVzNp9GBMdiTE8+FRIUmFU+KjTftnzQlUxTyrDI='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' http: https: blob: data:;" />
+  <title>ORI · Orion Nova Technologies</title>
+  <link rel="stylesheet" href="estilos.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "../node_modules/three/build/three.module.js",
+      "three/addons/": "../node_modules/three/examples/jsm/",
+      "@pixiv/three-vrm": "../node_modules/@pixiv/three-vrm/lib/three-vrm.module.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="marca"><span class="logo">◆</span> ORION NOVA <b>TECHNOLOGIES</b></div>
+    <div class="estado-servidor" id="estadoServidor"><span class="punto"></span><span id="textoServidor">Conectando…</span></div>
+    <button class="icono" id="btnMemoria" title="Lo que ORI ha aprendido">🧠</button>
+    <button class="icono" id="btnConfig" title="Configuración">⚙</button>
+  </header>
+
+  <main>
+    <section class="escena">
+      <canvas id="lienzo"></canvas>
+      <div class="nombre-avatar">ORI</div>
+      <div class="estado-avatar" id="estadoAvatar">En espera</div>
+      <button class="mic" id="btnMic" title="Hablar con ORI">🎙</button>
+      <div class="ayuda-mic">Toque el micrófono para hablar · toque de nuevo para enviar</div>
+    </section>
+
+    <section class="panel">
+      <div class="acciones">
+        <button data-accion="Preséntate y cuéntame qué servicios ofrece Orion Nova Technologies.">Servicios</button>
+        <button data-accion="Resume el documento adjunto en puntos clave." data-doc>Resumir doc</button>
+        <button data-accion="Genera un reporte profesional en Markdown con título, resumen ejecutivo, hallazgos en tabla y recomendaciones a partir del documento adjunto." data-doc>Generar reporte</button>
+        <button data-accion="Investiga en internet y hazme un reporte con fuentes sobre: ">Investigar</button>
+        <button data-accion="Redacta un correo profesional y claro sobre lo siguiente: ">Redactar correo</button>
+      </div>
+
+      <div class="mensajes" id="mensajes"></div>
+
+      <div class="adjunto oculto" id="adjunto">
+        <span>📄 <b id="nombreAdjunto"></b></span>
+        <button class="icono" id="quitarAdjunto" title="Quitar documento">✕</button>
+      </div>
+
+      <form class="entrada" id="formulario">
+        <label class="icono" title="Adjuntar documento (PDF, Word, Excel, TXT, CSV)">📎
+          <input type="file" id="archivo" accept=".pdf,.docx,.xlsx,.txt,.md,.csv,.json" hidden />
+        </label>
+        <textarea id="texto" rows="1" placeholder="Escriba a ORI… (Enter para enviar)"></textarea>
+        <button type="submit" class="enviar" id="btnEnviar">➤</button>
+      </form>
+    </section>
+  </main>
+
+  <dialog id="dlgConfig">
+    <form method="dialog" id="formConfig">
+      <h2>Configuración</h2>
+      <label>Dirección del servidor ORI
+        <input id="cfgServidor" placeholder="http://192.168.1.50:8765" />
+      </label>
+      <label>Clave de acceso (ORION_API_KEY)
+        <input id="cfgClave" type="password" placeholder="Opcional" />
+      </label>
+      <label class="fila"><input id="cfgVoz" type="checkbox" /> ORI responde con voz</label>
+      <div class="botones">
+        <button value="cancelar">Cancelar</button>
+        <button value="guardar" class="primario">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dlgMemoria">
+    <h2>Lo que ORI ha aprendido</h2>
+    <p class="tenue">ORI guarda aquí lo que usted le enseña y lo que descubre investigando. Borre lo que esté mal.</p>
+    <form id="formEnsenar" class="ensenar">
+      <input id="nuevoRecuerdo" placeholder="Enseñarle algo nuevo a ORI…" />
+      <button class="primario">Enseñar</button>
+    </form>
+    <div id="listaMemoria" class="lista-memoria"></div>
+    <form method="dialog" class="botones"><button>Cerrar</button></form>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

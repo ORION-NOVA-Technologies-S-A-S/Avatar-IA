@@ -1,0 +1,28 @@
+{
+  "name": "orion-ori-escritorio",
+  "productName": "ORI - Orion Nova",
+  "version": "1.0.0",
+  "description": "Asistente humanoide de IA de ORION NOVA TECHNOLOGIES",
+  "author": "ORION NOVA TECHNOLOGIES",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win",
+    "dist:linux": "electron-builder --linux"
+  },
+  "dependencies": {
+    "three": "^0.170.0",
+    "@pixiv/three-vrm": "^3.3.0"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.0"
+  },
+  "build": {
+    "appId": "com.orionnova.ori",
+    "productName": "ORI - Orion Nova",
+    "files": ["main.js", "preload.js", "renderer/**", "avatar/**", "node_modules/three/**", "node_modules/@pixiv/**"],
+    "win": { "target": "nsis" },
+    "linux": { "target": "AppImage" }
+  }
+}

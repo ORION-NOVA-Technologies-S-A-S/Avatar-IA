@@ -1,0 +1,2 @@
+Opcional: guarde aquí su avatar VRM con el nombre nova.vrm (créelo en VRoid Studio).
+Si no existe, ORI usa el humanoide 3D incluido en el código.

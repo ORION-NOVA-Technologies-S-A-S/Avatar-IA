@@ -1,0 +1,4 @@
+Ponga aquí los dos archivos de la voz de Piper:
+  es_MX-ald-medium.onnx
+  es_MX-ald-medium.onnx.json
+Descarga: https://huggingface.co/rhasspy/piper-voices/tree/main/es/es_MX/ald/medium
